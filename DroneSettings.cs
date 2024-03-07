@@ -12,7 +12,7 @@ using VLB;
 
 namespace Oxide.Plugins
 {
-    [Info("Drone Settings", "WhiteThunder", "1.3.0")]
+    [Info("Drone Settings", "WhiteThunder", "1.3.1")]
     [Description("Allows changing speed, toughness and other properties of RC drones.")]
     internal class DroneSettings : CovalencePlugin
     {
@@ -371,8 +371,7 @@ namespace Oxide.Plugins
 
             private void SendFakeUpdateNetworkGroup(BaseEntity entity, BasePlayer player, uint groupId)
             {
-                var write = Net.sv.StartWrite();
-                write.PacketID(Message.Type.GroupChange);
+                var write = Net.sv.StartWrite(Message.Type.GroupChange);
                 write.EntityID(entity.net.ID);
                 write.GroupID(groupId);
                 write.Send(new SendInfo(player.net.connection));
