@@ -12,7 +12,7 @@ using VLB;
 
 namespace Oxide.Plugins
 {
-    [Info("Drone Settings", "WhiteThunder", "1.3.0")]
+    [Info("Drone Settings", "WhiteThunder", "1.3.1")]
     [Description("Allows changing speed, toughness and other properties of RC drones.")]
     internal class DroneSettings : CovalencePlugin
     {
@@ -386,7 +386,7 @@ namespace Oxide.Plugins
                     SendFakeUpdateNetworkGroup(_rootEntity, player, BaseNetworkable.GlobalNetworkGroup.ID);
 
                     // Update the client secondary network group to the one that the drone will change to.
-                    player.net.SwitchSecondaryGroup(Net.sv.visibility.GetGroup(_rootEntity.transform.position));
+                    player.net.SwitchSecondaryGroup(Net.sv.visibility.GetGroup(_rootEntity.transform.position, _rootEntity.networkRange));
                 }
 
                 // Update the drone's network group based on its current position.
